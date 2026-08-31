@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrshare · 文件秒变二维码</title>
+  <link rel="icon" href="./logo.png" />
+  <script type="module" crossorigin src="./assets/index-CGd0GAJR.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CXKBNRN_.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">qrshare</span>
+      <span class="brand-sub">文件秒变二维码</span>
+    </div>
+    <div class="account" id="account" hidden>
+      <img class="avatar" id="avatar" alt="" />
+      <span class="account-name" id="account-name"></span>
+      <button class="btn-ghost" id="btn-logout">退出</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ── 登录视图 ───────────────────────────────────────── -->
+    <section id="view-login" class="card" hidden>
+      <h1 class="card-title">连接 GitHub 账号</h1>
+      <p class="card-desc">
+        qrshare 把文件存放在你自己的 GitHub 仓库，通过 GitHub Pages 生成公开链接。
+        需要一次性授权，之后自动记住。
+      </p>
+
+      <ol class="steps">
+        <li>
+          <span class="step-n">1</span>
+          <div>
+            打开 GitHub 令牌创建页（已预填好所需权限）
+            <a class="link" id="token-link" href="#" target="_blank" rel="noopener">点击打开 →</a>
+          </div>
+        </li>
+        <li>
+          <span class="step-n">2</span>
+          <div>页面底部点 <b>Generate token</b>，复制生成的 <code>ghp_</code> 开头字符串</div>
+        </li>
+        <li>
+          <span class="step-n">3</span>
+          <div>粘贴到下面，点连接</div>
+        </li>
+      </ol>
+
+      <div class="field">
+        <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false" />
+        <button class="btn-primary" id="btn-login">连接</button>
+      </div>
+
+      <details class="note">
+        <summary>关于安全</summary>
+        <ul>
+          <li>令牌<b>只保存在你这台设备的浏览器里</b>（localStorage），不会上传到任何第三方服务器——本应用是纯静态页面，没有后端。</li>
+          <li>随时可在 GitHub <span class="mono">Settings → Developer settings → Personal access tokens</span> 撤销，撤销后本应用立即失效。</li>
+          <li>建议给令牌设置过期时间（如 90 天），到期重新生成即可。</li>
+        </ul>
+      </details>
+
+      <p class="err" id="login-err" hidden></p>
+    </section>
+
+    <!-- ── 主视图 ─────────────────────────────────────────── -->
+    <section id="view-main" hidden>
+      <div class="card">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="file-input" multiple hidden />
+          <div class="dz-icon"></div>
+          <p class="dz-main">拖入文件，或 <span class="link">点击选择</span></p>
+          <p class="dz-sub">支持多选 · 单文件上限 25MB · PDF / 图片 / HTML / 文档均可</p>
+        </div>
+
+        <ul class="filelist" id="filelist"></ul>
+
+        <div class="actions" id="actions" hidden>
+          <button class="btn-primary" id="btn-generate">生成二维码</button>
+          <button class="btn-ghost" id="btn-clear">清空</button>
+        </div>
+      </div>
+
+      <details class="card settings">
+        <summary class="card-title settings-sum">样式设置</summary>
+        <div class="settings-grid">
+          <label class="set-item">
+            <span>模块颜色</span>
+            <input type="color" id="set-color" value="#222222" />
+          </label>
+          <label class="set-item">
+            <span>模块形状</span>
+            <select id="set-shape">
+              <option value="rounded">圆角</option>
+              <option value="dots">圆点</option>
+              <option value="square">方块</option>
+              <option value="extra-rounded">超圆角</option>
+              <option value="classy">条纹</option>
+            </select>
+          </label>
+          <label class="set-item">
+            <span>中心图标</span>
+            <div class="set-row">
+              <input type="checkbox" id="set-logo-on" checked />
+              <button class="btn-ghost btn-sm" id="btn-pick-logo">替换</button>
+              <button class="btn-ghost btn-sm" id="btn-reset-logo" hidden>还原</button>
+            </div>
+            <input type="file" id="logo-input" accept="image/*" hidden />
+          </label>
+          <label class="set-item">
+            <span>输出尺寸</span>
+            <select id="set-size">
+              <option value="600">600 × 600</option>
+              <option value="900" selected>900 × 900</option>
+              <option value="1200">1200 × 1200</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
+      <div class="card" id="result-card" hidden>
+        <h2 class="card-title">结果 <span class="count" id="result-count"></span></h2>
+        <div class="result-actions" id="result-actions">
+          <button class="btn-primary" id="btn-download-all">下载全部 (ZIP)</button>
+        </div>
+        <div class="results" id="results"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span id="foot-repo"></span>
+  </footer>
+
+</body>
+</html>
