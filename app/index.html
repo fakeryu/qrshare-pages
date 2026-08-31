@@ -56,11 +56,18 @@
       </div>
 
       <details class="note">
-        <summary>关于安全</summary>
+        <summary>关于安全（建议先看）</summary>
         <ul>
           <li>令牌<b>只保存在你这台设备的浏览器里</b>（localStorage），不会上传到任何第三方服务器——本应用是纯静态页面，没有后端。</li>
-          <li>随时可在 GitHub <span class="mono">Settings → Developer settings → Personal access tokens</span> 撤销，撤销后本应用立即失效。</li>
+          <li>
+            <b>权限范围</b>：上面链接预填了 <code>repo</code> 权限，它对这个账号的
+            <b>所有仓库</b>都有读写权（不限于分享文件的那个仓库）。这是创建仓库所必需的。
+            介意的话可以改用 GitHub 的 <b>fine-grained token</b>，手动建好
+            <code>qrshare-pages</code> 仓库后只授权给它一个仓库。
+          </li>
+          <li><b>共用/公共电脑用完后务必点右上角「退出」</b>，否则下一个人能以你的身份传文件。</li>
           <li>建议给令牌设置过期时间（如 90 天），到期重新生成即可。</li>
+          <li>随时可在 GitHub <span class="mono">Settings → Developer settings → Personal access tokens</span> 撤销，撤销后本应用立即失效。</li>
         </ul>
       </details>
 
