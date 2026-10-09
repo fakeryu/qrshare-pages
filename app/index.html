@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>qrshare · 文件秒变二维码</title>
   <link rel="icon" href="./logo.png" />
-  <script type="module" crossorigin src="./assets/index-Cp89Hmzo.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BNbIjxB7.css">
+  <script type="module" crossorigin src="./assets/index-CGd0GAJR.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CXKBNRN_.css">
 </head>
 <body>
   <header class="topbar">
@@ -18,42 +18,11 @@
     <div class="account" id="account" hidden>
       <img class="avatar" id="avatar" alt="" />
       <span class="account-name" id="account-name"></span>
-      <button class="btn-ghost" id="btn-lock">锁定</button>
       <button class="btn-ghost" id="btn-logout">退出</button>
     </div>
   </header>
 
   <main class="wrap">
-
-    <!-- ── 账号密码门禁 ───────────────────────────────────── -->
-    <section id="view-gate" class="card" hidden>
-      <h1 class="card-title">请输入账号密码</h1>
-      <p class="card-desc">本页面受访问限制。</p>
-
-      <div class="field-col">
-        <input type="text" id="gate-user" placeholder="账号" autocomplete="username" spellcheck="false" />
-        <input type="password" id="gate-pass" placeholder="密码" autocomplete="current-password" />
-      </div>
-
-      <div class="gate-row">
-        <label class="remember">
-          <input type="checkbox" id="gate-remember" /> 记住我（换浏览器需重新输入）
-        </label>
-        <button class="btn-primary" id="btn-gate">进入</button>
-      </div>
-
-      <p class="err" id="gate-err" hidden></p>
-
-      <details class="note">
-        <summary>这个登录能防住什么？</summary>
-        <ul>
-          <li>本应用是纯静态页面，<b>没有后端</b>，凭据校验逻辑在浏览器里执行。</li>
-          <li>因此它<b>只能挡住随手点开的路人</b>。懂技术的人打开开发者工具就能看到校验代码并绕过。</li>
-          <li>密码以 SHA-256 哈希形式存放，源码里不会出现明文。</li>
-          <li>需要真正的访问控制，请用带鉴权的托管服务（Cloudflare Access、Netlify 密码保护等），或给页面套一层后端。</li>
-        </ul>
-      </details>
-    </section>
 
     <!-- ── 登录视图 ───────────────────────────────────────── -->
     <section id="view-login" class="card" hidden>
